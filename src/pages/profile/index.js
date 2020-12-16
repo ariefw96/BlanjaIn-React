@@ -5,6 +5,10 @@ import Navbar from '../../components/navbar'
 import MyProduct from '../product/myProduct'
 import AddProduct from '../product/myProduct/addProduct'
 import EditProduct from '../product/myProduct/editProduct'
+import MyStock from '../product/sellingProduct'
+import AddStock from '../product/sellingProduct/addStock'
+import EditStock from '../product/sellingProduct/editStock'
+
 import './profil.css'
 import ProfileData from './profileData.js'
 
@@ -47,6 +51,18 @@ export class Profile extends Component {
 
                                     <Route path="/profile/edit/:id">
                                         {({ match, history }) => <EditProduct match={match} history={history} />}
+                                    </Route>
+                                    <Route path="/profile/mystock/">
+                                        {({ match, history }) => <MyStock match={match} history={history} />}
+                                    </Route>
+
+                                    <Route path="/profile/addStock">
+                                    {({ match, history }) => <AddStock match={match} history={history} />}
+                                        {/* <AddProduct addprodct={this.props} /> */}
+                                    </Route>
+
+                                    <Route path="/profile/editStock/:id">
+                                        {({ match, history }) => <EditStock match={match} history={history} />}
                                     </Route>
                         
                                     <Route  path="/profile">

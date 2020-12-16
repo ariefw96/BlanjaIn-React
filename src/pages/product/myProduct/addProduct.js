@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import './myproduct.css'
 
+
 const baseUrl = 'http://127.0.0.1:8000/product/add-product'
 
 class AddProduct extends Component {
@@ -23,7 +24,7 @@ class AddProduct extends Component {
         x.append("category_id", this.category_id)
         x.append("product_price", this.product_price)
         x.append("product_desc", this.product_desc)
-        x.append("user_id",14)
+        x.append("user_id",localStorage.getItem('user_id'))
         for(let i=0;i<this.state.product_img.length;i++){
             x.append("product_img",this.state.product_img[i])
         }
@@ -31,7 +32,7 @@ class AddProduct extends Component {
             console.log(pair[0]+ ', ' + pair[1]); 
         }
         e.preventDefault();
-        const config = { headers: { 'Content-Type': 'multipart/form-data' , 'x-access-token': 'x eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwidXNlcm5hbWUiOiJhcmllZjA5OCIsImxldmVsIjoyLCJpYXQiOjE2MDgwNzUwMTN9.TOiJAWWtTGXb7IQecpl-seWDr7uR3JpCVJCQciFeI4Q'} };
+        const config = { headers: { 'Content-Type': 'multipart/form-data' , 'x-access-token': 'x '+localStorage.getItem('token')} };
         axios.post(baseUrl, x, config)
         .then(({data}) => {
             console.log(data)

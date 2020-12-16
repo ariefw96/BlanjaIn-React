@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Sort, Logo, Search, Chart } from '../../assets';
+import { setLoginfalse } from '../../redux/actionCreators/Auth'
+import { addItems } from '../../redux/actionCreators/myBag'
 import './home.css'
 import '../../pages/style.css'
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import axios from 'axios'
 
 const token = 'x ' + localStorage.getItem("token")
@@ -13,6 +15,7 @@ const config = {
     }
 }
 const base_url = process.env.REACT_APP_API_BASE_URL
+
 
 class Navbar extends Component {
 
@@ -26,6 +29,7 @@ class Navbar extends Component {
         fetchColor: [],
         isLogin: true
     }
+
 
     clickOptHandler = (e) => {
         this.setState({
@@ -46,13 +50,18 @@ class Navbar extends Component {
 
     //logout
     logoutApp = () => {
-        console.log(token)
+        const { dispatch, auth } = this.props;
         axios.post(base_url + 'auth/logout', token, config)
             .then((result) => {
-                localStorage.removeItem("token")
                 this.setState({
                     isLogin: false
                 })
+                this.props.dispatch(setLoginfalse())
+                localStorage.removeItem('username')
+                localStorage.removeItem('user_id')
+                localStorage.removeItem('level')
+                localStorage.removeItem('name')
+                localStorage.removeItem('token')
                 alert('Anda telah logout')
             }).catch((error) => {
                 console.log(error)
@@ -83,14 +92,17 @@ class Navbar extends Component {
 
     render() {
         const { fetchSize } = this.state
-        const data = localStorage.getItem("data")
-        console.log(JSON.stringify(data))
+        const { dispatch, auth } = this.props;
 
+        console.log(localStorage)
         let loginBtn;
-        if (localStorage.getItem("data")) {
+        if (auth.isLogin) {
             loginBtn = <>
                 <div className="text-decoration-none">
-                    <div>Welcome {localStorage.getItem("data").username}, <button className="btn btn-danger pl-4 pr-4 mr-3 rounded-pill" onClick={this.logoutApp}>Logout</button></div>
+                    <div>Welcome
+                        <Link to="/profile">{localStorage.getItem("username")},</Link>
+                        <button className="btn btn-danger pl-4 pr-4 mr-3 rounded-pill" onClick={this.logoutApp}>Logout</button>
+                    </div>
                 </div>
             </>
         } else {

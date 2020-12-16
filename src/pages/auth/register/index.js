@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Form, Image } from 'react-bootstrap'
+import { addItems } from '../../../redux/actionCreators/myBag'
+import { connect } from 'react-redux'
 import axios from 'axios';
 import { Logo } from '../../../assets';
 import "../login/login.css"
@@ -19,13 +21,24 @@ class Register extends Component {
             lastname: this.lastname,
             email: this.email
         }
+        const { dispatch, bag } = this.props
+        try{
+            this.props.dispatch(addItems(data))
+        }catch{
+
+        }finally{
+            console.log(bag.mybag)
+        }
+        
+        e.preventDefault()
+        this.setState({
+            isRegister: true,
+        })
         axios.post(base_url + 'auth/signup', data)
             .then(({ data }) => {
-                this.setState({
-                    isRegister: true,
-                })
-                alert(data.data.msg)
-                window.location.href="/login"
+                
+                // alert(data.data.msg)
+                // // window.location.href="/login"
 
             }).catch((error) => {
                 alert(error)
@@ -33,6 +46,7 @@ class Register extends Component {
     }
     render() {
         console.log(this.state)
+        console.log(this.props.bag.mybag)
         return (
             <div>
                 <Container className="auth">
@@ -73,4 +87,10 @@ class Register extends Component {
 }
 
 
-export default Register;
+const mapStateToProps = ({ bag }) => {
+    return {
+        bag
+    };
+};
+
+export default connect(mapStateToProps)(Register);

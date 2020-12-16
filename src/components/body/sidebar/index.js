@@ -48,7 +48,7 @@ const Sidebar = () => {
                         <Dropdown.Toggle split variant="light" id="dropdown-split-basic" />
                         <Dropdown.Menu>
                             <Dropdown.Item  onClick={() => history.push('/profile/myproduct')}>My Product</Dropdown.Item>
-                            <Dropdown.Item href="/profile/myproduct">Sellng Products</Dropdown.Item>
+                            <Dropdown.Item href="/profile/mystock">Sellng Products</Dropdown.Item>
                         </Dropdown.Menu>
                         </Dropdown>
                     </div>
