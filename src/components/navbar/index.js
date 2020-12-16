@@ -5,6 +5,7 @@ import { addItems } from '../../redux/actionCreators/myBag'
 import './home.css'
 import '../../pages/style.css'
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
 import axios from 'axios'
 
@@ -17,6 +18,7 @@ const config = {
 const base_url = process.env.REACT_APP_API_BASE_URL
 
 
+
 class Navbar extends Component {
 
     state = {
@@ -27,7 +29,7 @@ class Navbar extends Component {
         category: '',
         fetchSize: [],
         fetchColor: [],
-        isLogin: true
+        searchName: ''
     }
 
 
@@ -37,9 +39,16 @@ class Navbar extends Component {
         })
     }
 
+    changeHandler = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
     //search
     submitHandler = () => {
-        window.location.href = `http://localhost:3000/products?name=` + this.search
+        const pathName = '/products?name='+this.search
+        // window.location.href=pathName
+        return 
+        
     }
     //filter
     submitFilterHandler = () => {
@@ -53,16 +62,12 @@ class Navbar extends Component {
         const { dispatch, auth } = this.props;
         axios.post(base_url + 'auth/logout', token, config)
             .then((result) => {
-                this.setState({
-                    isLogin: false
-                })
                 this.props.dispatch(setLoginfalse())
                 localStorage.removeItem('username')
                 localStorage.removeItem('user_id')
                 localStorage.removeItem('level')
                 localStorage.removeItem('name')
                 localStorage.removeItem('token')
-                alert('Anda telah logout')
             }).catch((error) => {
                 console.log(error)
             })
@@ -93,6 +98,7 @@ class Navbar extends Component {
     render() {
         const { fetchSize } = this.state
         const { dispatch, auth } = this.props;
+        // console.log(this.props)
 
         console.log(localStorage)
         let loginBtn;
@@ -128,10 +134,16 @@ class Navbar extends Component {
                             </Link>
                             <div className="col-lg-6 d-flex mt-2">
                                 <div className="input-group">
-                                    <input type="text" className="form-control border-right-0" style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px" }} name='product_name' placeholder="Search here..." autoComplete="off" onChange={(e) => (this.search = e.target.value)} />
+                                    <input type="text" className="form-control border-right-0" style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px" }} name='product_name' placeholder="Search here..." autoComplete="off" onChange={(e) => (this.setState({searchName: e.target.value}))} />
                                     <span className="input-group-append">
                                         <div className="input-group-text bg-transparent border-left-0" style={{ borderTopRightRadius: "25px", borderBottomRightRadius: "25px", height: "38px" }}>
-                                            <div onClick={this.submitHandler}><i className="fas fa-search"></i></div>
+                                        <Link to={{
+            pathname:'/products',
+            search: "?name="+this.state.searchName
+            }}
+            >
+                <div ><i className="fas fa-search"></i></div>
+                </Link>
                                         </div>
                                     </span>
                                 </div>

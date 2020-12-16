@@ -23,28 +23,24 @@ class Login extends Component {
         e.preventDefault()
         axios.post(base_url + 'auth/login', dataUser)
             .then(({ data }) => {
-                this.setState({
-                    isLogin: true
-                })
                 this.props.dispatch(setLogintrue())
                 localStorage.setItem('username',data.data.tokenId.username)
                 localStorage.setItem('user_id',data.data.tokenId.user_id)
                 localStorage.setItem('level',data.data.tokenId.level)
                 localStorage.setItem('name',data.data.tokenId.name)
                 localStorage.setItem('token',data.data.tokenId.token)
-
-                this.props.dispatch(passToken(localStorage.getItem('token')))
+                // this.props.dispatch(passToken(localStorage.getItem('token')))
             }).catch((error) => {
                 console.log(error)
             })
     }
     render() {
-        console.log(localStorage)
+        // console.log(localStorage)
         const { dispatch, auth } = this.props;
-        console.log(auth.newState)
+        // console.log(auth.newState)
         return (
             <Container className="auth">
-                {/* {auth.isLogin && <Redirect to="/" />} */}
+                {auth.isLogin && <Redirect to="/" />}
                 <div className="form-header">
                     <div className="img-container">
                         <Image src={Logo} alt="Logo" />

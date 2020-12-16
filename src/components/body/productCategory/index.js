@@ -60,12 +60,12 @@ class ProductCategory extends Component {
             <div className="container cntainer">
                 <h1>{this.props.title}</h1>
                 <small className="text-muted">This is For You</small>
-                <div className="row d-flex justify-content-start">
+                <div className="row d-flex justify-content-start ml-1">
                     {products && products.map(
                         ({ product_name, product_img, product_price, total_rating, product_id }) => {
                             return (
 
-                                <div className="card col-lg-2 col-md-3 col-sm-6 mr-3 ml-3 col-12 shadow bg-white " id="cards" key={product_id}>
+                                <div className="card col-lg-2 col-md-3 col-sm-6 col-12 ml-0 mr-3 shadow bg-white " id="cards" key={product_id}>
                                     <div id="header">
                                         <img src={process.env.REACT_APP_API_BASE_URL + product_img.split(',')[0]} className="card-img-top" id="card-img" alt="" />
                                     </div>
@@ -83,9 +83,9 @@ class ProductCategory extends Component {
                     )}
                 </div>
                 <div className="row mt-5">
-                    {prevBtn}
+                    {/* {prevBtn}
                     <button>{this.state.pageInfo.currentPage}</button>
-                    {nextBtn}
+                    {nextBtn} */}
                 </div>
             </div>
         )

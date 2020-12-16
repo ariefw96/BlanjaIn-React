@@ -39,15 +39,15 @@ class Product extends Component {
         // const { currentPage, nextpage, previousPage} = pageInfo
         const { match, location, history } = this.props
         return (
-            <div className="container cntainer">
+            <div className="container">
                 <h1>{this.props.title}</h1>
                 <small className="text-muted">{this.props.caption}</small>
-                <div className="row d-flex justify-content-start">
+                <div className="row d-flex justify-content-start ml-1">
                     {products && products.map(
                         ({ product_name, product_img, product_price, store_name, total_rating, id }) => {
                             return (
                                 <Link className="card-btn" to={{ pathname: "/detail/" + id }} >
-                                    <div className="card col-lg-2 col-md-3 col-sm-6 mr-3 ml-3 col-12 shadow bg-white " id="cards" key={id}>
+                                    <div className="card col-lg-2 col-md-3 col-sm-6 mr-3 ml-0 col-12 shadow bg-white" id="cards" key={id}>
                                         <div id="header">
                                             <img src={'http://localhost:8000' + product_img.split(',')[0]} className="card-img-top" id="card-img" alt="" />
                                         </div>

@@ -85,7 +85,7 @@ class MyProduct extends Component {
                                         <td>{product_price}</td>
                                         <td className="text-center">{product_desc}</td>
                                         <td className='p-2 d-flex'>
-                                            <Link to={{ pathname: "/profile/edit/" + id }}>
+                                            <Link to={{ pathname: "/profile/editstock/" + id }}>
                                                 <Button variant="warning" className="mr-2">Edit</Button>
                                             </Link>
                                             <Button variant="danger" onClick={() => { this.deleteProduct(id) }} >Delete</Button>

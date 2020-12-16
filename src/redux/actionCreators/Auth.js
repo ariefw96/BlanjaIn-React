@@ -1,4 +1,4 @@
-export const setLogintrue = (data) => {
+export const setLogintrue = () => {
     return {
         type: "LOGIN_TRUE",
 

@@ -9,9 +9,6 @@ import "../login/login.css"
 const base_url = process.env.REACT_APP_API_BASE_URL
 
 class Register extends Component {
-    state = {
-        isRegister: false
-    }
     handleSubmit = (e) => {
         const data = {
             username: this.username,
@@ -21,32 +18,17 @@ class Register extends Component {
             lastname: this.lastname,
             email: this.email
         }
-        const { dispatch, bag } = this.props
-        try{
-            this.props.dispatch(addItems(data))
-        }catch{
-
-        }finally{
-            console.log(bag.mybag)
-        }
-        
-        e.preventDefault()
-        this.setState({
-            isRegister: true,
-        })
         axios.post(base_url + 'auth/signup', data)
-            .then(({ data }) => {
-                
-                // alert(data.data.msg)
-                // // window.location.href="/login"
-
+            .then(({ data }) => {   
+                alert(data.data.msg)
+                window.location.href="/login"
             }).catch((error) => {
                 alert(error)
             })
     }
     render() {
-        console.log(this.state)
-        console.log(this.props.bag.mybag)
+        // console.log(this.state)
+        // console.log(this.props.bag.mybag)
         return (
             <div>
                 <Container className="auth">
