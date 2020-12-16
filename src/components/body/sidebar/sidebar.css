@@ -1,0 +1,32 @@
+.sidebar{
+    width: 395px;
+}
+.dp-profil{
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+.img-profil{
+    width: 90px;
+    object-position: -50%  50%;
+}
+.margin-up{
+    margin-top: -8px;
+}
+.icon{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+}
+.btnside{
+    height: 200px;
+    width: 200px;
+}
+.make-me-sticky {
+    position: sticky;
+    top: 0;
+}

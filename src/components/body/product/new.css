@@ -1,0 +1,36 @@
+.cntainer{
+    margin-top: 50px;
+}
+.card-bdy{
+    margin-top: -10px;
+}
+.merk{
+    font-size: 16px; 
+    font-weight: bold;
+    height: 28px;
+    width: 170px;
+    overflow: hidden;
+    color: black;
+}
+.price{
+   margin-top: -15px; 
+   color: #DB3022;
+}
+.brand{
+    margin-top: -15px; 
+    font-size: 12px;
+}
+.rate{
+   margin-top: -8px;
+}
+.rate-num{
+    font-size: 10px; 
+    margin-left: 5px;
+}
+.card-btn{
+    text-decoration: none;
+    color: black;
+}
+.card-btn:hover{
+    text-decoration: none;
+}

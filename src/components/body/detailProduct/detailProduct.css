@@ -1,0 +1,184 @@
+.img{
+    width: 378px;
+    height: 378px;
+    overflow: hidden;
+}
+.img-fit{
+    width: 378px;
+    height: 378px;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+}
+.dtl-img{
+    height: 65px;
+    width: 65px;
+    background-color: grey;
+    justify-content: space-between;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+}
+.img-dtl{
+    height: 65px;
+    width: 65px;
+}
+.dtl-prdct{
+    margin-left: 28px;
+}
+.txt-name{
+    font-size: 26px;
+    font-weight: 600;
+}
+.txt-brand{
+    font-size: 16px;
+    margin-top: -20px;
+}
+.btn-c{
+    height:36px;
+    width: 36px; 
+    border-radius:20px;
+    background-color:#D4D4D4; 
+    text-align:center;
+    color:black;
+    display: flex;
+    font-size:25px; 
+    font-weight:bold; 
+    justify-content:center; 
+    align-items: center;
+    background-color: indigo;
+    text-decoration: none;
+}
+.clr-dtl{
+    height:36px;
+    width:36px; 
+    border-radius:20px; 
+}
+
+.chat{
+    height: 48px;
+    width: 160px;
+    border-radius: 24px;
+    border: solid 1px;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+.chat:hover{
+    background-color:  #DB3022;
+    color: blanchedalmond;
+}
+.chat:link{
+    color: blanchedalmond;
+}
+
+
+.add-bag{
+    height: 48px;
+    width: 160px;
+    border-radius: 24px;
+    border: solid 1px;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+.add-bag:hover{
+    background-color:  #DB3022;
+    color: blanchedalmond;
+}
+.add-bag:link{
+    color: blanchedalmond;
+}
+
+
+.buy-now{
+    height: 48px;
+    width: 343px;
+    border-radius: 24px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    background-color: #DB3022;
+}
+.buy-now:hover{
+    background-color:  white;
+    color:  black;
+    border: solid 1px;
+}
+.buy-now:link{
+    color: blanchedalmond;
+}
+.information{
+    margin-top: 50px;
+    font-size: 28px;
+    font-weight: 600;
+}
+.condition{
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.v-condition{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #DB3022;
+}
+.v-description{
+    font-size: 14px;
+}
+.prdct-revw{
+    font-size: 28px;
+    font-weight: 600;
+}
+
+
+/* rating */
+.ratee{
+    height: 200px;
+    display: flex;
+}
+.ratee-number{
+    height: 100px;
+    width : 150px;
+}
+.txt-rating{
+    font-size: 60px;
+    font-weight: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: flex-end;
+}
+.per{
+    font-size: 20px;
+    font-weight: 400;
+}
+.dtl-rate{
+    height: 120px;
+    width : 200px;
+    display: flex;
+    flex-direction: column;
+}
+.indicator-active{
+    height: 0px;
+    width: 120px;
+    border: 6px solid #DB3022; 
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.indicator-non{
+    height: 0px;
+    width: 120px;
+    border: 6px solid white; 
+    border-radius: 5px;
+    margin-top: 5px;
+}

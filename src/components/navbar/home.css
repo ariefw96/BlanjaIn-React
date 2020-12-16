@@ -1,0 +1,73 @@
+.search{
+    margin-top: 5px; 
+    border: 1px solid; 
+    border-radius: 25px; 
+    height: 40px; 
+    width: 400px;
+}
+.inpt{
+    height: 100%; 
+    width: 85%; 
+    padding-left: 7px;
+    margin-left: 7px; 
+    border: none; 
+    border-radius: 25px; 
+    outline: none; 
+}
+#img{
+    position: relative;
+}
+#text{
+    position: absolute;
+}
+
+
+#tshrit{
+    height: 220px;
+    background-color: #CC0B04;
+    margin-left: 28px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+#short{
+    height: 220px;
+    background-color: #1C3391;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+#jacket{
+    height: 220px;
+    background-color: #F67B02;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+#pants{
+    height: 220px;
+    background-color: #E31F51;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+#shoes{
+    height: 220px;
+    background-color: #57CD9E;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+#cards{
+    max-width: 208px;
+    max-height: 400px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+#header{
+    height: 136px;
+    margin-left: -15px;
+    margin-right: -15px;
+    display: flex;
+    justify-content: center;
+}
+#card-img{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}

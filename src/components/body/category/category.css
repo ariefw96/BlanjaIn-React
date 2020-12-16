@@ -1,0 +1,104 @@
+.box-ctg{
+    height: 220px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-left: 125px;
+    margin-right: 125px;
+}
+.box-ctg::-webkit-scrollbar{
+    display: none;
+}
+.card-ctg{
+    display: inline-flex;
+    height: 100%;
+    width: 206px;
+    background-color: green;
+    margin-right: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-ctg{
+    width: 116px;
+    height: 146px;
+    object-position: center;
+    position: relative;
+    z-index: 1;
+    
+}
+.title{
+    position: absolute;
+    z-index: 2;
+}
+.txt-title{
+    font-size: 38px;
+    color: white;
+    font-weight: 500;
+}
+
+.title-category{
+    font-weight: 700;
+    font-size: 30px;
+}
+
+
+
+/* responsive carousell */
+@media only screen and (max-width: 1080px) {
+    div.box{
+        height: 150px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+    div.card{
+        display: inline-flex;
+        height: 100%;
+        width: 355px;
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 10px;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+    }
+    p.txt-title{
+        font-size: 30px;
+        color: white;
+        font-weight: 500;
+    }
+  }
+
+  /* responsive carousell */
+@media only screen and (max-width: 680px) {
+    div.box{
+        height: 100px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+    div.card{
+        display: inline-flex;
+        height: 100%;
+        width: 225px;
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 10px;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+    }
+    p.txt-title{
+        font-size: 18px;
+        color: white;
+        font-weight: 500;
+    }
+  }
