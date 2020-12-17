@@ -18,7 +18,7 @@ class MyProduct extends Component {
     getAllProducts = () => {
 
         axios
-            .get(baseUrl)
+            .get(baseUrl+'/'+localStorage.getItem('user_id'))
             .then(({ data }) => {
                 this.setState({
                     products: data.data

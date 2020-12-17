@@ -8,7 +8,7 @@ const qs = require('querystring')
 const config = {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'x-access-token': 'x eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwidXNlcm5hbWUiOiJhcmllZjA5OCIsImxldmVsIjoyLCJpYXQiOjE2MDgxNDgyNTN9.Gu-k14vf6cNW06mJVqYE5yynSo2BO2v4HajgXLqj-qM'
+        'x-access-token': 'x '+localStorage.getItem('token')
     }
 }
 

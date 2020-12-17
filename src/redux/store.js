@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
+import { composeWithDevTools } from "redux-devtools-extension";
 import { createLogger } from "redux-logger";
 import promiseMiddleware from "redux-promise-middleware";
 
@@ -13,6 +13,6 @@ const enhancers = applyMiddleware(promiseMiddleware, logger);
 // action pending
 // action fulfilled/rejected
 
-const reduxStore = createStore(reducers, enhancers);
+const reduxStore = createStore(reducers, composeWithDevTools(enhancers));
 
 export default reduxStore;

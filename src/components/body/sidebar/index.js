@@ -14,7 +14,7 @@ const Sidebar = () => {
                         <img className="img-profil" src={Profil} alt="" />
                     </div>
                     <div className="ml-4">
-                        <p>Arief Widiyatmoko</p>
+                        <p>{localStorage.getItem('name')}</p>
                         <div className="d-flex margin-up">
                            <div className="mr-1">
                                <Link>
@@ -34,7 +34,7 @@ const Sidebar = () => {
                         <p className="mr-2">Store</p>
                         <Dropdown.Toggle split variant="light" id="dropdown-split-basic" />
                         <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Store Profile</Dropdown.Item>
+                            <Dropdown.Item href="#">Store Profile</Dropdown.Item>
                         </Dropdown.Menu>
                         </Dropdown>
                     </div>
@@ -48,7 +48,7 @@ const Sidebar = () => {
                         <Dropdown.Toggle split variant="light" id="dropdown-split-basic" />
                         <Dropdown.Menu>
                             <Dropdown.Item  onClick={() => history.push('/profile/myproduct')}>My Product</Dropdown.Item>
-                            <Dropdown.Item href="/profile/mystock">Sellng Products</Dropdown.Item>
+                            <Dropdown.Item onClick={() => history.push('/profile/mystock')}>Sellng Products</Dropdown.Item>
                         </Dropdown.Menu>
                         </Dropdown>
                     </div>
@@ -61,8 +61,8 @@ const Sidebar = () => {
                         <p className="mr-2">Order</p>
                         <Dropdown.Toggle split variant="light" id="dropdown-split-basic" />
                         <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">My Order</Dropdown.Item>
-                            <Dropdown.Item href="#/action-1">Order Cancel </Dropdown.Item>
+                            <Dropdown.Item href="#">My Order</Dropdown.Item>
+                            <Dropdown.Item href="#">Order Cancel </Dropdown.Item>
                         </Dropdown.Menu>
                         </Dropdown>
                     </div>

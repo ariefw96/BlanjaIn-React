@@ -102,7 +102,8 @@ class Navbar extends Component {
 
         console.log(localStorage)
         let loginBtn;
-        if (auth.isLogin) {
+        // if (auth.isLogin) {
+        if(localStorage.getItem("username")){
             loginBtn = <>
                 <div className="text-decoration-none">
                     <div>Welcome

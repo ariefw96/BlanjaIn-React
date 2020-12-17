@@ -83,6 +83,7 @@ class EditProduct extends Component {
                     product_name: data[0].product_name,
                     product_price: data[0].product_price,
                     product_desc: data[0].product_desc,
+                    product_image: data[0].product_img
                 })
             }).catch((error) => {
                 console.log(error)
@@ -106,7 +107,7 @@ class EditProduct extends Component {
 
     render() {
         console.log('aaaa')
-        const { category_id, product_name, product_price, product_desc, cat } = this.state
+        const { category_id, product_name, product_price, product_desc,product_image, cat } = this.state
         console.log(this.state)
         return (
             <div className="container p-5">
@@ -152,9 +153,19 @@ class EditProduct extends Component {
                             {/* <Form.Control type="text" name="product_desc" placeholder={product_desc} onChange={(e) => (this.product_desc = e.target.value)} /> */}
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Product Size</Form.Label>
+                            <Form.Label>Product Image</Form.Label>
                             <Form.Control type="file" name="product_img" placeholder="Product Img" onChange={(e) => this.handlerFile(e)} multiple />
                         </Form.Group>
+                        <div className="row ml-1 mb-5">
+                            {
+                                product_image && product_image.split(',').map((img) => {
+                                    console.log('http://127.0.0.1:8000'+img)
+                                    return <>
+                                    <img src={'http://127.0.0.1:8000'+img} style={{maxHeight:"200px", maxWidth:"200px",marginRight:"10px"}}/>
+                                    </>
+                                })
+                            }
+                        </div>
                         <Button variant="primary" type="submit" onClick={this.handleUpload}>
                             Submit
                             </Button>

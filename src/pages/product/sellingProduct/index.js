@@ -4,7 +4,7 @@ import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import './myproduct.css'
 
-const baseUrl = 'http://127.0.0.1:8000/products/showall'
+const baseUrl = 'http://127.0.0.1:8000/products/alldata'
 const config = {
     headers : {'x-access-token': 'x '+localStorage.getItem('token')}
 }
@@ -15,12 +15,12 @@ class MyProduct extends Component {
     };
 
     getAllProducts = () => {
-
         axios
-            .get(baseUrl)
+            .get(baseUrl+'/'+localStorage.getItem('user_id'))
             .then(({ data }) => {
+                console.log(data)
                 this.setState({
-                    products: data.data
+                    products: data
                 })
             })
             .catch((err) => {
@@ -29,7 +29,7 @@ class MyProduct extends Component {
     }
 
     deleteProduct = (params) => {
-        axios.delete('http://127.0.0.1:8000/product/deleteProd/' + params, config)
+        axios.delete('http://127.0.0.1:8000/product/delete/' + params, config)
             .then((result) => {
                 console.log(result)
             }).catch((error) => {
@@ -41,15 +41,6 @@ class MyProduct extends Component {
 
     componentDidMount = () => {
         this.getAllProducts();
-    }
-
-    componentDidUpdate = (prevProps, prevState) => {
-        if (prevState.products !== this.state.products) {
-            console.log('delete gagal')
-        } else {
-            console.log('Delete berhasil')
-            this.getAllProducts();
-        }
     }
 
 
@@ -71,19 +62,25 @@ class MyProduct extends Component {
                             <tr>
                                 <th>No</th>
                                 <th>Product Name</th>
-                                <th>Product Price</th>
-                                <th>Product Desc</th>
+                                <th>Category</th>
+                                <th>Product Color</th>
+                                <th>Product Size</th>
+                                <th>Product Condition</th>
+                                <th>Qty</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {products && products.map(({ product_name, product_price, product_desc, id }, index) => {
+                            {products && products.map(({ product_name, category_name,color_name,size_name,condition_name,qty, id }, index) => {
                                 return (
                                     <tr key={id}>
                                         <td>{index + 1}</td>
                                         <td>{product_name}</td>
-                                        <td>{product_price}</td>
-                                        <td className="text-center">{product_desc}</td>
+                                        <td>{category_name}</td>
+                                        <td>{color_name}</td>
+                                        <td>{size_name}</td>
+                                        <td>{condition_name}</td>
+                                        <td>{qty}</td>
                                         <td className='p-2 d-flex'>
                                             <Link to={{ pathname: "/profile/editstock/" + id }}>
                                                 <Button variant="warning" className="mr-2">Edit</Button>
