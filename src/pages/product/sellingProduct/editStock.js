@@ -6,7 +6,7 @@ import './myproduct.css'
 const base_url = process.env.REACT_APP_API_BASE_URL
 const config = {
     headers: {
-        'x-access-token': 'x eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwidXNlcm5hbWUiOiJhcmllZjA5OCIsImxldmVsIjoyLCJpYXQiOjE2MDgxNDgyNTN9.Gu-k14vf6cNW06mJVqYE5yynSo2BO2v4HajgXLqj-qM'
+        'x-access-token': 'x '+localStorage.getItem('token')
     }
 }
 
@@ -52,7 +52,7 @@ class EditProduct extends Component {
         return (
             <div className="container p-5">
                 <div className="container bckgr">
-                    {this.props.history.push}
+                    {/* {this.props.history.push} */}
                     <TablePivot update_id={update_id} product_id={product_id} color_id={color_id} size_id={size_id} condition_id={condition_id} qty={qty} history={this.props.history}/>
                 </div>
 

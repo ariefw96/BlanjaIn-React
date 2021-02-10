@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import Sidebar from '../../components/body/sidebar'
 import Navbar from '../../components/navbar'
 import MyProduct from '../product/myProduct'
@@ -35,6 +35,7 @@ export class Profile extends Component {
         return (
             <>
                 <Navbar />
+
                 <div className="d-flex ">
                     <Sidebar className="" />
                     <div className="right-profile">

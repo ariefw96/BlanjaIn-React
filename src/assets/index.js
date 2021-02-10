@@ -10,6 +10,9 @@ import Edit from './icon/edit.png'
 import Home from './icon/home.png'
 import Product from './icon/product.png'
 import Cart from './icon/cart.png'
+import Notification from './icon/bell.png'
+import Message from './icon/mail.png'
+import User from './icon/user.png'
 
 //category
 import Tshirt from './category/tshirt.png'
@@ -57,5 +60,8 @@ export {
     Profil,
     Home,
     Product,
-    Cart
+    Cart,
+    Message,
+    Notification,
+    User
 }

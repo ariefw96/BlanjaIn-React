@@ -12,11 +12,11 @@ class Home extends Component {
         console.log(match, location, history)
         return(
             <>
-                <Navbar />
+                <Navbar history={history} />
                 <Carousell />
                 <Category />
-                <Product title='New' url="?new=desc" caption='You’ve never seen it before!' />
-                <Product title='Popular' url="?popular=desc" caption='Find clothes that are trending recently'/>
+                <Product title='New' url="" caption='You’ve never seen it before!' />
+                <Product title='Popular' url="?sortBy=rating&orderBy=desc" caption='Find clothes that are trending recently'/>
                 <div className="mt-5"></div>
             </>
         )

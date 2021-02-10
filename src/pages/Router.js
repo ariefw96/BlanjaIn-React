@@ -12,6 +12,7 @@ import Login from './auth/login';
 import Reset from './auth/reset';
 import Confrim from './auth/confirm';
 import Register from './auth/register';
+import Search from './search'
 
 import store from '../redux/store'
 
@@ -29,6 +30,7 @@ export default function Router() {
                 <Route path="/checkout"  component={CheckOut}/>
                 <Route path="/profile" component={Profile}/>
                 <Route path="/products"  component={Category}/>
+                <Route path="/search" component={Search} />
             </BrowserRouter>
         </Provider>
     )

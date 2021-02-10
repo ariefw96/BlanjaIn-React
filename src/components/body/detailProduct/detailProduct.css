@@ -164,13 +164,41 @@
 }
 .dtl-rate{
     height: 120px;
-    width : 200px;
+    width : 180px;
     display: flex;
     flex-direction: column;
 }
-.indicator-active{
+.indicator-active-5{
     height: 0px;
     width: 120px;
+    border: 6px solid #DB3022; 
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.indicator-active-4{
+    height: 0px;
+    width: 96px;
+    border: 6px solid #DB3022; 
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.indicator-active-3{
+    height: 0px;
+    width: 72px;
+    border: 6px solid #DB3022; 
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.indicator-active-2{
+    height: 0px;
+    width: 48px;
+    border: 6px solid #DB3022; 
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.indicator-active-1{
+    height: 0px;
+    width: 24px;
     border: 6px solid #DB3022; 
     border-radius: 5px;
     margin-top: 5px;

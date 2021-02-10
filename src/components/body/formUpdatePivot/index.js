@@ -1,14 +1,15 @@
 
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 const qs = require('querystring')
+
 
 
 const config = {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'x-access-token': 'x '+localStorage.getItem('token')
+        'x-access-token': 'x ' + localStorage.getItem('token')
     }
 }
 
@@ -18,16 +19,9 @@ export default class tablePivot extends Component {
         prod: [],
         color: [],
         size: [],
-        cond: [],
-        product_id: '',
-        color_id: '',
-        size_id: '',
-        condition_id: '',
-        qty: '',
-        update_id: '',
-        updatedData:false
-
+        cond: []
     }
+
     optCatcher = (e) => {
         this.setState({
             [e.target.id]: e.target.value
@@ -44,16 +38,41 @@ export default class tablePivot extends Component {
     }
 
     submitHandler = (e) => {
-        e.preventDefault()
-        const params = {
-            id: this.state.update_id,
-            product_id: this.state.product_id,
-            color_id: this.state.color_id,
-            size_id: this.state.size_id,
-            condition_id: this.state.condition_id,
-            qty: this.state.qty
+        let params = {
+            id: this.state.update_id
+        }
+        if (this.state.product_id) {
+            params = {
+                ...params,
+                product_id: this.state.product_id
+            }
+        }
+        if (this.state.color_id) {
+            params = {
+                ...params,
+                color_id: this.state.color_id,
+            }
+        }
+        if (this.state.size_id) {
+            params = {
+                ...params,
+                size_id: this.state.size_id
+            }
+        }
+        if (this.state.condition_id) {
+            params = {
+                ...params,
+                condition_id: this.state.condition_id
+            }
+        }
+        if (this.state.qty) {
+            params = {
+                ...params,
+                qty: this.state.qty
+            }
         }
         console.log(params)
+        e.preventDefault()
         axios.patch('http://127.0.0.1:8000/product/update/'+params.id,qs.stringify(params), config)
         .then(({data}) => {
             console.log(data)
@@ -68,7 +87,7 @@ export default class tablePivot extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://127.0.0.1:8000/products/all_prod')
+        axios.get('http://127.0.0.1:8000/products/all_prod/' + localStorage.getItem('user_id'))
             .then(({ data }) => {
                 this.setState({
                     prod: data
@@ -108,12 +127,13 @@ export default class tablePivot extends Component {
     render() {
         console.log(this.state)
         const { prod, color, size, cond } = this.state
-        // console.log(this.props)
+        console.log(this.props)
         return (
             <>
-            {this.state.updatedData && <Redirect to="/profile/myStock" />}
+
                 <div className="ml-3">
                     <h2>Update Data Product</h2>
+                    {this.state.updatedData && <Redirect to="/profile/myStock" />}
                     <div className="dropdown-divider"></div>
                     <form onSubmit={this.submitHandler} autoComplete="off">
                         <div className="form-group">

@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import axios from 'axios';
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import DetailProduct from '../../components/body/detailProduct';
@@ -11,17 +11,21 @@ const config = {
         'x-access-token' : token
     }
 }
-const getURL = process.env.REACT_APP_API_BASE_URL + 'product/'
+const url = process.env.REACT_APP_API_BASE_URL
 
 class Detail extends Component {
+    constructor(props){
+        super(props)
+    }
     state = {
         product : []
     }
 
     getProduct = () => {
         const {match} = this.props
-        Axios
-        .get(getURL + match.params.id , config)
+        console.log(url+'getProductData/' + match.params.id)
+        axios
+        .get(url+'product/getProductData/' + match.params.id)
         .then(({data}) => {
             // console.log(data)
             this.setState({
@@ -44,7 +48,7 @@ class Detail extends Component {
 
     componentDidUpdate = (prevProps) => {
         if(this.props.match !== prevProps.match){
-            this.getSingleProduct(this.props.match)
+            this.getProduct(this.props.match)
         }
     }
     
@@ -52,11 +56,10 @@ class Detail extends Component {
     render() {
         const {product} = this.state
         // console.log('idnya adalah', this.state.id)
-        console.log('aaa')
         return (
             <>
-                <Navbar/>
-                <div className="container">
+                <Navbar history={this.props.history}/>
+                <div className="container mb-5">
                     <div className="d-flex" >
                         <Link className="card-btn" to={"/"}>
                             <p className="mr-2">Home</p>
@@ -67,23 +70,27 @@ class Detail extends Component {
                         </Link>
                     </div>
                     {
-                    product && product.map(({product_name, product_img, product_desc, condition_name,total_rating , product_price, product_qty, product_size, store_name}, index) => {
+                    product && product.map(({id, product_name, product_img, product_desc ,product_price, color_id, color_name,size_id, size_name, fullname, condition_name, rating, dibeli}, index) => {
                         return <DetailProduct 
                         product_name={product_name}
                         product_img={product_img}
                         product_desc={product_desc}
                         product_price={product_price}
-                        product_qty={product_qty}
-                        product_size={product_size}
-                        store_name={store_name}
-                        product_condition={condition_name}
-                        total_rating={total_rating}
-                        key={index}
+                        color_id={color_id}
+                        color_name={color_name}
+                        size_id={size_id}
+                        size_name={size_name}
+                        store_name={fullname}
+                        condition_name={condition_name}
+                        rating={rating}
+                        dibeli={dibeli}
+                        key={id}
+                        prod_id= {this.props.match.params.id}
                         />
                     })
                     }
                 </div>
-                <Product  title='Popular' url="?new=desc"/>
+                <Product title='You may also like' url="?sortBy=rating&orderBy=desc"/>
                 <div className="mt-5"></div>
             </>
         )

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Rating from '../../moleculs/rating';
 
 
-const url = process.env.REACT_APP_API_BASE_URL + 'products';
+const base_url = process.env.REACT_APP_API_BASE_URL
 
 
 class Product extends Component {
@@ -15,7 +15,7 @@ class Product extends Component {
     };
 
     getAllProducts = () => {
-        axios.get(url)
+        axios.get(base_url + 'products' + this.props.url)
             .then(({ data }) => {
                 console.log(data.data)
                 this.setState({
@@ -23,20 +23,30 @@ class Product extends Component {
                     pageInfo: data.data.pageInfo
                 })
             }).catch((error) => {
+                this.setState({
+                    products: [],
+                    pageInfo: []
+                })
                 console.log(error)
             })
     }
     nextPage = () => {
-        window.location.href=process.env.REACT_APP_BASE_URL+this.state.pageInfo.nextpage
+        window.location.href = process.env.REACT_APP_BASE_URL + this.state.pageInfo.nextpage
     }
 
     componentDidMount = () => {
         this.getAllProducts();
     }
+
+    componentDidUpdate = (prevProps) => {
+        if (this.props.url !== prevProps.url) {
+            this.getAllProducts(this.props.url)
+        }
+    }
+
     render() {
         const { products, pageInfo } = this.state;
-        console.log(pageInfo.currentPage, pageInfo.nextpage, pageInfo.previousPage)
-        // const { currentPage, nextpage, previousPage} = pageInfo
+        console.log(this.props)
         const { match, location, history } = this.props
         return (
             <div className="container">
@@ -44,7 +54,7 @@ class Product extends Component {
                 <small className="text-muted">{this.props.caption}</small>
                 <div className="row d-flex justify-content-start ml-1">
                     {products && products.map(
-                        ({ product_name, product_img, product_price, store_name, total_rating, id }) => {
+                        ({ product_name, product_img, product_price, store_name, color_name, size_name, rating, dibeli, id }) => {
                             return (
                                 <Link className="card-btn" to={{ pathname: "/detail/" + id }} >
                                     <div className="card col-lg-2 col-md-3 col-sm-6 mr-3 ml-0 col-12 shadow bg-white" id="cards" key={id}>
@@ -55,7 +65,8 @@ class Product extends Component {
                                             <p className="card-text merk" >{product_name}</p>
                                             <p className="card-text price">Rp. {product_price} </p>
                                             <p className="card-text brand text-muted">{store_name}</p>
-                                            <Rating total_rating={Math.round(total_rating)} />
+                                            <p className="card-text brand text-muted">{`${size_name} - ${color_name} `}</p>
+                                            <p style={{ fontSize: "12px", color: "blue" }}>Rating ({rating.toString().substr(0, 3)}) | Dibeli {dibeli}</p>
                                         </div>
                                     </div>
                                 </Link>
@@ -64,9 +75,6 @@ class Product extends Component {
                     )}
                 </div>
                 <div className="row mt-5">
-                    <button>Prev</button>
-                    <button>{pageInfo.currentPage}</button>
-                    <button onClick={this.nextPage}>Next</button>
                 </div>
             </div>
         )

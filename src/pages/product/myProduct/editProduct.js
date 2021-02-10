@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 import './myproduct.css'
 
-const url = 'http://127.0.0.1:8000/'
+const url = process.env.REACT_APP_API_BASE_URL
 
 const config = {
     headers: {
@@ -89,7 +89,7 @@ class EditProduct extends Component {
                 console.log(error)
             })
 
-        axios.get('http://127.0.0.1:8000/products/all_ctg')
+        axios.get(url+'products/all_ctg')
             .then(({ data }) => {
                 this.setState({
                     cat: data

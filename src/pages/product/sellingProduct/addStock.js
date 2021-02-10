@@ -5,6 +5,8 @@ import { Redirect } from 'react-router-dom'
 import './myproduct.css'
 const qs = require('querystring')
 
+
+const base_url = process.env.REACT_APP_API_BASE_URL
 const config = {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -53,9 +55,8 @@ class AddProduct extends Component {
             qty: this.state.qty
         }
         console.log(params)
-        axios.post('http://127.0.0.1:8000/product/add-stock', qs.stringify(params), config)
+        axios.post(base_url+'product/add-stock', qs.stringify(params), config)
             .then(({ data }) => {
-                console.log(data)
                 this.setState({
                     addData: true
                 })
@@ -66,7 +67,7 @@ class AddProduct extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://127.0.0.1:8000/products/all_prod')
+        axios.get(base_url+'products/all_prod/'+localStorage.getItem('user_id'))
             .then(({ data }) => {
                 this.setState({
                     prod: data
@@ -74,7 +75,7 @@ class AddProduct extends Component {
             }).catch((error) => {
                 console.log(error)
             })
-        axios.get('http://127.0.0.1:8000/products/all_color')
+        axios.get(base_url+'products/all_color')
             .then(({ data }) => {
                 this.setState({
                     color: data
@@ -83,7 +84,7 @@ class AddProduct extends Component {
                 console.log(error)
             })
 
-        axios.get('http://127.0.0.1:8000/products/all_size')
+        axios.get(base_url+'products/all_size')
             .then(({ data }) => {
                 this.setState({
                     size: data
@@ -92,7 +93,7 @@ class AddProduct extends Component {
                 console.log(error)
             })
 
-        axios.get('http://127.0.0.1:8000/products/all_cond')
+        axios.get(base_url+'products/all_cond')
             .then(({ data }) => {
                 this.setState({
                     cond: data
@@ -109,6 +110,7 @@ class AddProduct extends Component {
         const { prod, size, color, cond } = this.state
         // console.log(match, location, history)
         // console.log(this.state)
+        console.log(base_url+'products/all_prod/'+localStorage.getItem('user_id'))
         return (
             <>
                 <div className="container p-5">

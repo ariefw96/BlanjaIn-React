@@ -5,8 +5,7 @@ import { Redirect } from 'react-router-dom'
 import './myproduct.css'
 
 
-const baseUrl = 'http://127.0.0.1:8000/product/add-product'
-
+const baseurl = process.env.REACT_APP_API_BASE_URL
 class AddProduct extends Component {
 
     state = {
@@ -43,7 +42,8 @@ class AddProduct extends Component {
         }
         e.preventDefault();
         const config = { headers: { 'Content-Type': 'multipart/form-data', 'x-access-token': 'x ' + localStorage.getItem('token') } };
-        axios.post(baseUrl, x, config)
+        axios.post(baseurl+'product/add-product'
+        , x, config)
             .then(({ data }) => {
                 console.log(data)
                 this.setState({
@@ -55,7 +55,7 @@ class AddProduct extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://127.0.0.1:8000/products/all_ctg')
+        axios.get(baseurl+ 'products/all_ctg')
             .then(({ data }) => {
                 this.setState({
                     cat: data

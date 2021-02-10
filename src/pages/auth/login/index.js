@@ -17,19 +17,13 @@ class Login extends Component {
     handleSubmit = (e) => {
         const { dispatch, auth } = this.props;
         const dataUser = {
-            username: this.username,
+            email: this.email,
             password: this.password
         }
         e.preventDefault()
         axios.post(base_url + 'auth/login', dataUser)
             .then(({ data }) => {
-                this.props.dispatch(setLogintrue())
-                localStorage.setItem('username',data.data.tokenId.username)
-                localStorage.setItem('user_id',data.data.tokenId.user_id)
-                localStorage.setItem('level',data.data.tokenId.level)
-                localStorage.setItem('name',data.data.tokenId.name)
-                localStorage.setItem('token',data.data.tokenId.token)
-                // this.props.dispatch(passToken(localStorage.getItem('token')))
+                dispatch(setLogintrue(data.result))
             }).catch((error) => {
                 console.log(error)
             })
@@ -52,7 +46,7 @@ class Login extends Component {
                     </div>
                     <Form className="form-section" autoComplete="off">
                         <div className="form-main">
-                            <input type="name" placeholder="Username" name="uname" required onChange={(e) => (this.username = e.target.value)} />
+                            <input type="name" placeholder="Username" name="uname" required onChange={(e) => (this.email = e.target.value)} />
                         </div>
                         <div className="form-main">
                             <input type="password" placeholder="Password" name="psw" required onChange={(e) => (this.password = e.target.value)} />

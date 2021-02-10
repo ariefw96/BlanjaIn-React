@@ -7,7 +7,7 @@ export default class Rating extends Component {
 
     render() {
         
-        const {total_rating} = this.props
+        const {total_rating, rating} = this.props
         // console.log(total_rating)
         let a = '';
         for(let i = 0; i< total_rating; i++){
@@ -18,16 +18,11 @@ export default class Rating extends Component {
         return (
             <div className="d-flex">
                 <div className="rate">
-                    {/* <img src={Star} alt="" />
-                    <img src={Star} alt="" />
-                    <img src={Star} alt="" />
-                    <img src={Star} alt="" />
-                    <img src={Star} alt="" />*/}
                     {lop.map((data) => {
                         return <img src={Star} alt="" />
                     })}
                 </div>
-                <p className="text-muted rate-num" >({total_rating})</p>
+                <p className="text-muted rate-num" >({rating})</p>
             </div>
         )
     }

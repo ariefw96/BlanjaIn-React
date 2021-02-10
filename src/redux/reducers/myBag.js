@@ -1,5 +1,3 @@
-const { ActionType } = require("redux-promise-middleware");
-
 const bagReducer = (prevstate = { mybag: [] }, action) => {
 
     switch (action.type) {

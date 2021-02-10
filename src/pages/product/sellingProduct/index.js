@@ -4,7 +4,7 @@ import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import './myproduct.css'
 
-const baseUrl = 'http://127.0.0.1:8000/products/alldata'
+const baseUrl = process.env.REACT_APP_API_BASE_URL
 const config = {
     headers : {'x-access-token': 'x '+localStorage.getItem('token')}
 }
@@ -16,7 +16,7 @@ class MyProduct extends Component {
 
     getAllProducts = () => {
         axios
-            .get(baseUrl+'/'+localStorage.getItem('user_id'))
+            .get(baseUrl+'products/alldata/'+localStorage.getItem('user_id'))
             .then(({ data }) => {
                 console.log(data)
                 this.setState({
@@ -29,7 +29,7 @@ class MyProduct extends Component {
     }
 
     deleteProduct = (params) => {
-        axios.delete('http://127.0.0.1:8000/product/delete/' + params, config)
+        axios.delete(baseUrl+'product/delete/' + params, config)
             .then((result) => {
                 console.log(result)
             }).catch((error) => {
