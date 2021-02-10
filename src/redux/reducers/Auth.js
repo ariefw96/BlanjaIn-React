@@ -5,18 +5,18 @@ const authReducer = (
         email: '',
         name: '',
         level: 0,
-        token:''
+        token: ''
     }, action) => {
     switch (action.type) {
         case "LOGIN_TRUE":
             return {
                 ...prevState,
                 isLogin: true,
-                user_id:action.payload.user_id,
-                email:action.payload.email,
-                name:action.payload.name,
-                level:action.payload.level,
-                token:action.payload.token
+                user_id: action.payload.user_id,
+                email: action.payload.email,
+                name: action.payload.name,
+                level: action.payload.level,
+                token: action.payload.token
             };
         case "LOGIN_FALSE":
             return {
@@ -27,6 +27,16 @@ const authReducer = (
                 name: '',
                 level: 0
             };
+        case "SET_EMAIL":
+            return {
+                ...prevState,
+                email: action.payload
+            }
+        case "REMOVE_EMAIL":
+            return {
+                ...prevState,
+                email: ''
+            }
         case "GET_TOKEN":
             return {
                 ...prevState,

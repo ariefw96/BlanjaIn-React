@@ -24,6 +24,14 @@ class Navbar extends Component {
         searchName: ''
     }
 
+    clickFilterHandler = () => {
+        this.setState({
+            color: '',
+            size: '',
+            category: '',
+        })
+    }
+
 
     clickOptHandler = (e) => {
         this.setState({
@@ -52,7 +60,7 @@ class Navbar extends Component {
     }
 
     render() {
-        const { fetchSize } = this.state
+        console.log(this.state)
         const { dispatch, auth } = this.props;
         let loginBtn;
         if (auth.isLogin) {

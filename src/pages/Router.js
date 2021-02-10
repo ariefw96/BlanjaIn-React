@@ -9,9 +9,11 @@ import CheckOut from './checkOut';
 import Profile from './profile';
 import Category from './category';
 import Login from './auth/login';
-import Reset from './auth/reset';
-import Confrim from './auth/confirm';
+import Forgot from './auth/forgot';
+import OTP from './auth/otp'
+import Confrim from './auth/reset';
 import Register from './auth/register';
+import Activate from './auth/activate'
 import Search from './search'
 
 import store from '../redux/store'
@@ -21,8 +23,10 @@ export default function Router() {
         <Provider store={store}>
             <BrowserRouter>
                 <Route path="/login" exact component={Login}  />
-                <Route path="/reset" exact component={Reset}  />
-                <Route path="/confirm" exact component={Confrim}  />
+                <Route path="/activate" exact component={Activate}  />
+                <Route path="/forgot" exact component={Forgot}  />
+                <Route path="/otp" exact component={OTP}  />
+                <Route path="/reset" exact component={Confrim}  />
                 <Route path="/register" exact component={Register}  />
                 <Route path="/" exact component={Home}  />
                 <Route path="/detail/:id"  component={Detail}/>

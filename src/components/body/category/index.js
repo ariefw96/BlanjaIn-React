@@ -7,10 +7,9 @@ import { Jacket, Pants, Shoes, Short, Tshirt } from '../../../assets';
 class Category extends Component{
 
     render(){   
-        console.log(this.props.ctg)
-        
+      
         return(
-            <div className="container mt-5">
+            <div className="container mt-5 mb-5">
                 <h1>Category</h1>
                 <small className="text-muted">What are you currently looking for</small>
 
@@ -20,7 +19,8 @@ class Category extends Component{
                     id="tshrit"
                     to={{
                         pathname:'/products',
-                        search: "?category=1"
+                        search: "?category=1",
+                        state: {cat_name:'T-shirt'}
                         }}>
                         <div className="position-relative">
                             <img src={Tshirt} height="146px" width="116px" alt="" />
@@ -29,9 +29,10 @@ class Category extends Component{
                             <h2 className="text-white text-weight-bold">T-Shirt</h2>
                         </div>
                     </Link>
-                    <Link href="" className="col-lg col-md col-sm col mr-3 d-flex justify-content-center align-items-center" id="short"  to={{
+                    <Link  className="col-lg col-md col-sm col mr-3 d-flex justify-content-center align-items-center" id="short"  to={{
                         pathname:'/products',
-                        search: "?category=2"
+                        search: "?category=2",
+                        state: {cat_name:'Short'}
                         }}>
                         <div className="position-relative">
                             <img src={Short} height="146px" width="158px" alt="" />
@@ -42,7 +43,8 @@ class Category extends Component{
                     </Link>
                     <Link href="" className="col-lg col-md col-sm col mr-3 d-flex justify-content-center align-items-center"  id="jacket" to={{
                         pathname:'/products',
-                        search: "?category=3"
+                        search: "?category=3",
+                        state: {cat_name:'Jacket'}
                         }}>
                         <div className="position-relative">
                             <img src={Jacket} height="131px" width="131px" alt="" />
@@ -53,7 +55,8 @@ class Category extends Component{
                     </Link>
                     <Link href="" className="col-lg col-md col-sm col mr-3 d-flex justify-content-center align-items-center" id="pants" to={{
                         pathname:'/products',
-                        search: "?category=4"
+                        search: "?category=4",
+                        state: {cat_name:'Pants'}
                         }}>
                         <div className="position-relative">
                             <img src={Pants} height="131px" width="76px" alt=""/>
@@ -64,7 +67,8 @@ class Category extends Component{
                     </Link>
                     <Link href="" className="col-lg col-md col-sm col d-flex justify-content-center align-items-center" id="shoes" to={{
                         pathname:'/products',
-                        search: "?category=5"
+                        search: "?category=5",
+                        state: {cat_name:'Shoes'}
                         }}>
                         <div className="position-relative">
                             <img src={Shoes} height="109px" width="169px" alt="" />

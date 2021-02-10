@@ -8,11 +8,11 @@ export class Category extends Component {
     }
     render() {
         const {location, history} = this.props;
-        // console.log(location.search)
+        const {cat_name} = this.props.location.state
         return (
             <>
                 <Navbar history={history}/>
-                <ProductCategory match title='Search result' ctg={location.search}/>
+                <ProductCategory match title='Category' ctg={location.search} category_name={cat_name}/>
             </>
         )
     }

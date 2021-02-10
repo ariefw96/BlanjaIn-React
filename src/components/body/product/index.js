@@ -15,7 +15,7 @@ class Product extends Component {
     };
 
     getAllProducts = () => {
-        axios.get(base_url + 'products' + this.props.url)
+        axios.get(base_url + '/products' + this.props.url)
             .then(({ data }) => {
                 console.log(data.data)
                 this.setState({
@@ -29,9 +29,6 @@ class Product extends Component {
                 })
                 console.log(error)
             })
-    }
-    nextPage = () => {
-        window.location.href = process.env.REACT_APP_BASE_URL + this.state.pageInfo.nextpage
     }
 
     componentDidMount = () => {
@@ -52,11 +49,11 @@ class Product extends Component {
             <div className="container">
                 <h1>{this.props.title}</h1>
                 <small className="text-muted">{this.props.caption}</small>
-                <div className="row d-flex justify-content-start ml-1">
+                <div className="row d-flex justify-content-between">
                     {products && products.map(
-                        ({ product_name, product_img, product_price, store_name, color_name, size_name, rating, dibeli, id }) => {
+                        ({ product_name, product_img, product_price, store_name, color_name, size_name, category_name, rating, dibeli, id }) => {
                             return (
-                                <Link className="card-btn" to={{ pathname: "/detail/" + id }} >
+                                <Link className="card-btn mt-4" to={{ pathname: "/detail/" + id }} >
                                     <div className="card col-lg-2 col-md-3 col-sm-6 mr-3 ml-0 col-12 shadow bg-white" id="cards" key={id}>
                                         <div id="header">
                                             <img src={'http://localhost:8000' + product_img.split(',')[0]} className="card-img-top" id="card-img" alt="" />
@@ -64,7 +61,7 @@ class Product extends Component {
                                         <div className="card-body pl-2 pr-2 card-bdy">
                                             <p className="card-text merk" >{product_name}</p>
                                             <p className="card-text price">Rp. {product_price} </p>
-                                            <p className="card-text brand text-muted">{store_name}</p>
+                                            <p className="card-text brand text-muted">{category_name}</p>
                                             <p className="card-text brand text-muted">{`${size_name} - ${color_name} `}</p>
                                             <p style={{ fontSize: "12px", color: "blue" }}>Rating ({rating.toString().substr(0, 3)}) | Dibeli {dibeli}</p>
                                         </div>

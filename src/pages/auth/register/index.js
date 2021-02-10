@@ -1,34 +1,73 @@
 import React, { Component } from 'react'
 import { Container, Form, Image } from 'react-bootstrap'
-import { addItems } from '../../../redux/actionCreators/myBag'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios';
 import { Logo } from '../../../assets';
 import "../login/login.css"
 
-const base_url = process.env.REACT_APP_API_BASE_URL
+const url = process.env.REACT_APP_API_BASE_URL
 
 class Register extends Component {
-    handleSubmit = (e) => {
-        const data = {
-            username: this.username,
-            password: this.password,
-            level_id: 1,
-            firstname: this.firstname,
-            lastname: this.lastname,
-            email: this.email
+    constructor(props) {
+        super(props)
+        this.state = {
+            isSeller: false
         }
-        axios.post(base_url + 'auth/signup', data)
-            .then(({ data }) => {   
-                alert(data.data.msg)
-                window.location.href="/login"
+    }
+    handleSubmit = (e) => {
+        const {history} = this.props
+        let level = 1
+        let storeName = ''
+        if (this.state.isSeller) {
+            level = 2
+            storeName = this.store
+        }
+        const data = {
+            email: this.email,
+            password: this.password,
+            fullname: this.fullname,
+            level_id: level,
+            storeName:storeName
+        }
+        console.log(data)
+        axios.post(url + '/auth/signup', data)
+            .then(({ data }) => {
+                history.replace('/activate')
             }).catch((error) => {
-                alert(error)
+                console.log(error)
             })
     }
+    changeForm = () => {
+        this.setState({
+            isSeller: !this.state.isSeller
+        })
+    }
     render() {
-        // console.log(this.state)
-        // console.log(this.props.bag.mybag)
+        let btnSignup;
+        let formSeller;
+        if (!this.state.isSeller) {
+            btnSignup =
+                <>
+                    <div className="button-group">
+                        <div className="button button-full">Customer</div>
+                        <div className="button button-shadow" onClick={this.changeForm}>Seller</div>
+                    </div>
+                </>
+        } else {
+            btnSignup =
+                <>
+                    <div className="button-group">
+                        <div className="button button-shadow" onClick={this.changeForm}>Customer</div>
+                        <div className="button button-full">Seller</div>
+                    </div>
+                </>
+            formSeller = <>
+                <div className="form-main">
+                    <input type="name" placeholder="Store name" name="uname" required onChange={(e) => (this.store = e.target.value)} />
+                </div>
+            </>
+        }
         return (
             <div>
                 <Container className="auth">
@@ -37,30 +76,22 @@ class Register extends Component {
                             <Image src={Logo} alt="Logo" />
                         </div>
                         <p className="info">Please sign up with your account</p>
-                        <div className="button-group">
-                            <a href=" " className="button button-full">Customer</a>
-                            <a href=" " className="button button-shadow">Seller</a>
-                        </div>
-                        <Form className="form-section" onSubmit={this.handleSubmit}>
+                        {btnSignup}
+                        <Form className="form-section">
                             <div className="form-main">
-                                <input type="name" placeholder="Username" name="uname" onChange={(e) => (this.username = e.target.value)} required />
+                                <input type="email" placeholder="Email" name="uname" required onChange={(e) => (this.email = e.target.value)} />
                             </div>
                             <div className="form-main">
                                 <input type="password" placeholder="Password" name="psw" onChange={(e) => (this.password = e.target.value)} required />
                             </div>
                             <div className="form-main">
-                                <input type="name" placeholder="Firstname" name="uname" required onChange={(e) => (this.firstname = e.target.value)} />
+                                <input type="name" placeholder="Fullname" name="uname" required onChange={(e) => (this.fullname = e.target.value)} />
                             </div>
-                            <div className="form-main">
-                                <input type="name" placeholder="Lastname" name="uname" required onChange={(e) => (this.lastname = e.target.value)} />
-                            </div>
-                            <div className="form-main">
-                                <input type="email" placeholder="Email" name="uname" required onChange={(e) => (this.email = e.target.value)} />
-                            </div>
+                            {formSeller}
                             <a className="submit" type="submit" onClick={this.handleSubmit}>REGISTER</a>
                         </Form>
-                        
-                        <p className="register">Already have a Tokopedia account? <a href="login">Login</a></p>
+
+                        <p className="register">Already have a BlanjaIn account? <Link to="/login">Login here</Link></p>
                     </div>
                 </Container>
             </div>

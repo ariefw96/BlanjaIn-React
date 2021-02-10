@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import { Container, Form, Image } from 'react-bootstrap'
 import { Logo } from '../../../assets';
 import { setLogintrue, passToken } from '../../../redux/actionCreators/Auth'
@@ -21,7 +22,7 @@ class Login extends Component {
             password: this.password
         }
         e.preventDefault()
-        axios.post(base_url + 'auth/login', dataUser)
+        axios.post(base_url + '/auth/login', dataUser)
             .then(({ data }) => {
                 dispatch(setLogintrue(data.result))
             }).catch((error) => {
@@ -46,15 +47,15 @@ class Login extends Component {
                     </div>
                     <Form className="form-section" autoComplete="off">
                         <div className="form-main">
-                            <input type="name" placeholder="Username" name="uname" required onChange={(e) => (this.email = e.target.value)} />
+                            <input type="name" placeholder="Email" name="uname" required onChange={(e) => (this.email = e.target.value)} />
                         </div>
                         <div className="form-main">
                             <input type="password" placeholder="Password" name="psw" required onChange={(e) => (this.password = e.target.value)} />
                         </div>
                     </Form>
-                    <a className="forgot" href="reset">Forgot password?</a><br></br>
+                    <Link to="/forgot" className="forgot" >Forgot password?</Link>
                     <a className="submit" type="submit" onClick={this.handleSubmit}>LOGIN</a>
-                    <p className="register">Don't have a Tokopedia account? <a href="./register">Register</a></p>
+                    <p className="register">Don't have a BlanjaIn account? Signup <Link to="/register">here</Link></p>
                 </div>
             </Container>
         )

@@ -2,23 +2,31 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Jazz } from '../../assets'
 import Navbar from '../../components/navbar'
+import { connect } from 'react-redux'
 import '../myBag/myBag.css'
 import './checkout.css'
 
+const base_url = process.env.REACT_APP_API_BASE_URL
+
 class CheckOut extends Component {
-    constructor(){
+    constructor() {
         super();
-        this.state={
+        this.state = {
             qty: 1
         }
     }
 
+    toPrice = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
     render() {
+        const { history, bag } = this.props
         return (
             <div>
-                <Navbar />
+                <Navbar history={history} />
                 <div className="container">
-                    <h1 style={{fontSize: '34px', fontWeight:'700'}}>CheckOut</h1>
+                    <h1 style={{ fontSize: '34px', fontWeight: '700' }}>CheckOut</h1>
                     <p className="mt-3 ttl-addrs">Shipping Address</p>
                     <div className="d-flex ">
                         <div className="left">
@@ -31,42 +39,37 @@ class CheckOut extends Component {
                                     </div>
                                 </Link>
                             </div>
-                            <div className='col prodct justify-content-between'>
-                                <div className="selectAll">
-                                    <div className="mt-3">
-                                        <input type="checkbox" className="cek" />
-                                    </div>
-                                    <div className="img-chart">
-                                        <img style={{height: '70px'}} src={Jazz} alt="" />
-                                    </div>
-                                    <div className="ml-3">
-                                        <p className="name-prodct">Men's formal suit - Black</p>
-                                        <p className="brand-product text-muted">Zalora Cloth</p>
-                                    </div>
-                                    <div className="d-flex justify-content-between ml-5 mt-3" style={{height:'36px', width:'150px'}}>
-                                        <Link className="text-decoration-none" onClick={() => this.setState({ qty: this.state.qty - 1 })}>
-                                            <div className="btn-c" style={{backgroundColor:'#D4D4D4'}}>-</div>
-                                        </Link>
-                                            <p>{this.state.qty}</p>
-                                        <Link className="text-decoration-none" onClick={() => this.setState({ qty: this.state.qty + 1 })}>
-                                            <div className="btn-c" style={{backgroundColor:'#FFFFFF', border:"solid 1px"}}>+</div>
-                                        </Link>
-                                    </div>
-                                </div>
-                                <p className="prc">Rp.200000</p>
-                            </div>
+                            {
+                                bag.mybag.map(({ product_name, product_img, price, size, color, qty }) => {
+                                    return (
+                                        <div className='col prodct justify-content-between'>
+                                            <div className="selectAll">
+                                                <div className="img-chart">
+                                                    <img style={{ height: '100px' }} src={base_url + product_img} />
+                                                </div>
+                                                <div className="ml-3">
+                                                    <p className="name-prodct">{product_name}</p>
+                                                    <p className="brand-product text-muted">{size} - {color}</p>
+                                                    <p className="name-prodct">Jumlah : {qty}</p>
+                                                </div>
+                                            </div>
+                                            <p className="prc">Rp. {this.toPrice(price * qty)}</p>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                         <div className="right">
                             <div className='shop-sumry'>
                                 <p className="smry-title">Shopping summary</p>
                                 <div className="ttl-price">
                                     <p className="text-price text-muted">Total price</p>
-                                    <p className="pay">Rp.200.000</p>
+                        <p className="pay">Rp.{this.toPrice(bag.totalAmmount)}</p>
                                 </div>
                                 <Link className="text-decoration-none">
-                                <div className="btn-buy">
-                                    <p className="text-buy">Select payment</p>
-                                </div>
+                                    <div className="btn-buy">
+                                        <p className="text-buy">Select payment</p>
+                                    </div>
                                 </Link>
                             </div>
                         </div>
@@ -78,4 +81,12 @@ class CheckOut extends Component {
 }
 
 
-export default CheckOut
+
+const mapStateToProps = ({ auth, bag }) => {
+    return {
+        auth,
+        bag
+    };
+};
+
+export default connect(mapStateToProps)(CheckOut);

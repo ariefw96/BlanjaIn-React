@@ -80,10 +80,10 @@
     margin-top: 30px;
 }
 .img-chart{
-    width: 70px;
-    height: 69px;
+    width: 100px;
+    height: 100px;
     overflow: hidden;
-    margin-left: 35px;
+    margin-left: 10px;
     object-fit: cover;
     object-position: right;
     border-radius: 8px;

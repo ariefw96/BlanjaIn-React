@@ -32,14 +32,16 @@ const SearchPage = ({ history }) => {
         <>
             <Navbar history={history} />
             <div className='container'>
+                
                 {
                     product.length > 0 ? (
                         <>
+                        <h2>Pencarian ditemukan</h2>
                             {
-                                product.map(({ product_name, product_img, product_price, store_name, color_name, size_name, rating, dibeli, id }) => {
+                                product.map(({ product_name, product_img, product_price, category_name, store_name, color_name, size_name, rating, dibeli, id }) => {
                                     return (
                                         <>
-                                            <Card product_name={product_name} product_img={product_img} product_price={product_price} store_name={store_name} color_name={color_name} size_name={size_name} rating={rating} dibeli={dibeli} id={id} />
+                                            <Card product_name={product_name} product_img={product_img} product_price={product_price} category={category_name} color_name={color_name} size_name={size_name} rating={rating} dibeli={dibeli} id={id} />
                                         </>
                                     )
                                 })
@@ -47,7 +49,7 @@ const SearchPage = ({ history }) => {
                         </>
                     ) : (
                             <>
-                                <h2>Data tidak ditemukan untuk {history.location.search.split("=")[1]}</h2>
+                                <h2>Data tidak ditemukan</h2>
                             </>
                         )
                 }
