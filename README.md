@@ -59,7 +59,15 @@ REACT_APP_BASE_URL = "http://localhost:8000"
 
 ## Related Project
 
-You can find backend for this project [here](https://github.com/ariefw96/blanja-restAPI)
+You can find backend for this project here
+
+[`restful-API`](https://github.com/ariefw96/BlanjaIn-restAPI)
+
+Other project
+
+[`BlanjaIn (ReactNative)`](https://github.com/ariefw96/BlanjaIn-React-Native)
+
+
 
 
 
