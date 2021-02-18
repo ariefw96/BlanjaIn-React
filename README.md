@@ -61,7 +61,7 @@ REACT_APP_BASE_URL = "http://localhost:8000"
 
 You can find backend for this project here
 
-[`restful-API`](https://github.com/ariefw96/BlanjaIn-restAPI)
+[`BlanjaIn-restAPI`](https://github.com/ariefw96/BlanjaIn-restAPI)
 
 Other project
 
