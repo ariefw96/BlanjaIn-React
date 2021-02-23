@@ -1,4 +1,4 @@
-# BlanjaIn React-Native
+# BlanjaIn ReactJs
 
 ## Contents
 
